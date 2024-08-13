@@ -6,10 +6,7 @@
     <bean id="pool1" name="p1, p2, p3" class="org.beko.spring.database.pool.ConnectionPool">
         <constructor-arg name="username" type="java.lang.String" value="Postgres"/>
         <constructor-arg name="properties">
-            <map>
-                <entry key="url" value="postgresUrl"/>
-                <entry key="password" value="123"/>
-            </map>
+            <null/>
         </constructor-arg>
         <constructor-arg name="poolSize" value="10"/>
         <constructor-arg name="args">
@@ -18,6 +15,12 @@
                 <value>--arg2=value2</value>
             </list>
         </constructor-arg>
+        <property name="properties">
+            <map>
+                <entry key="url" value="postgresUrl"/>
+                <entry key="password" value="123"/>
+            </map>
+        </property>
     </bean>
 
     <bean id="companyRepository" class="org.beko.spring.database.repository.CompanyRepository" factory-method="of">
