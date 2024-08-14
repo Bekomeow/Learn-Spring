@@ -1,17 +1,11 @@
 package org.beko.spring.database.repository;
 
+import org.beko.spring.bpp.InjectBean;
 import org.beko.spring.database.pool.ConnectionPool;
 
 public class CompanyRepository {
 
-    private final ConnectionPool connectionPool;
-
-    public CompanyRepository(ConnectionPool connectionPool) {
-        this.connectionPool = connectionPool;
-    }
-
-    public static CompanyRepository of(ConnectionPool connectionPool) {
-        return new CompanyRepository(connectionPool);
-    }
+    @InjectBean
+    private ConnectionPool connectionPool;
 }
 
