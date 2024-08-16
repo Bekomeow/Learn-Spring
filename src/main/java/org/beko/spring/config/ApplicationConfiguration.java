@@ -28,6 +28,8 @@ public class ApplicationConfiguration {
         }
 
         @Bean
+        @Profile("web|prod")
+//        ! & |
         public UserRepository userRepository2(ConnectionPool pool2) {
                 return new UserRepository(pool2);
         }
