@@ -1,5 +1,6 @@
 package org.beko.spring.database.repository;
 
+import lombok.RequiredArgsConstructor;
 import org.beko.spring.bpp.Auditing;
 import org.beko.spring.bpp.Transaction;
 import org.beko.spring.database.entity.Company;
@@ -15,19 +16,14 @@ import java.util.List;
 @Repository
 @Transaction
 @Auditing
+@RequiredArgsConstructor
 public class CompanyRepository implements CrudRepository<Integer, Company> {
 
+    @Qualifier("pool1")
     private final ConnectionPool connectionPool;
     private final List<ConnectionPool> pools;
+    @Value("${db.pool.size}")
     private final Integer poolSize;
-
-    public CompanyRepository(@Qualifier("pool1") ConnectionPool connectionPool,
-                             List<ConnectionPool> pools,
-                             @Value("${db.pool.size}") Integer poolSize) {
-        this.connectionPool = connectionPool;
-        this.pools = pools;
-        this.poolSize = poolSize;
-    }
 
     @PostConstruct
     private void init() {
