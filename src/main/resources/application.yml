@@ -21,3 +21,11 @@ db:
 
 spring.profiles.active: qa
 
+logging:
+  level:
+    root: WARN
+    org.beko.spring.database: INFO
+  file:
+    name: beko.log
+    path: /
+

@@ -1,11 +1,14 @@
 package org.beko.spring.database.pool;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+
+@Slf4j
 @RequiredArgsConstructor
 @Component("pool1")
 public class ConnectionPool {
@@ -17,12 +20,12 @@ public class ConnectionPool {
 
     @PostConstruct
     private void init() {
-        System.out.println("init bean");
+        log.info("init bean");
     }
 
     @PreDestroy
     private void destroy() {
-        System.out.println("Clean connection pool");
+        log.info("Clean connection pool");
     }
 }
 
