@@ -23,9 +23,22 @@ spring.profiles.active: qa
 
 logging:
   level:
-    root: WARN
+    root: INFO
     org.beko.spring.database: INFO
   file:
     name: beko.log
     path: /
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/spring_starter_db
+    username: beko
+    password: beko
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        hbm2ddl.auto: validate
+
 

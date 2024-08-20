@@ -1,0 +1,11 @@
+version: '3'
+services:
+  base-project-pg:
+    container_name: spring-starter-db
+    image: postgres:15
+    environment:
+      POSTGRES_USER: beko
+      POSTGRES_PASSWORD: beko
+      POSTGRES_DB: spring_starter_db
+    ports:
+      - '5433:5432'
