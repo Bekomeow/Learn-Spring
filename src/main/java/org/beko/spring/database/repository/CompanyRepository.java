@@ -1,45 +1,21 @@
 package org.beko.spring.database.repository;
 
-import lombok.RequiredArgsConstructor;
-import org.beko.spring.bpp.Auditing;
-import org.beko.spring.bpp.Transaction;
 import org.beko.spring.database.entity.Company;
-import org.beko.spring.database.pool.ConnectionPool;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
-import javax.annotation.PostConstruct;
-import java.util.Collections;
-import java.util.Optional;
 import java.util.List;
+import java.util.Optional;
 
-@Repository
-@Transaction
-@Auditing
-@RequiredArgsConstructor
-public class CompanyRepository implements CrudRepository<Integer, Company> {
+public interface CompanyRepository extends JpaRepository<Company, Integer> {
 
-    @Qualifier("pool1")
-    private final ConnectionPool connectionPool;
-    private final List<ConnectionPool> pools;
-    @Value("${db.pool.size}")
-    private final Integer poolSize;
+//    @Query(name = "Company.findByName")
+    @Query("select c from Company c " +
+            " join fetch c.locales cl" +
+            " where c.name =:name2")
+    Optional<Company> findByName(@Param("name2") String name);
 
-    @PostConstruct
-    private void init() {
-        System.out.println("init company repository");
-    }
-
-    @Override
-    public Optional<Company> findById(Integer id) {
-        System.out.println("findById method...");
-        return Optional.of(new Company(id, null, Collections.EMPTY_MAP));
-    }
-
-    @Override
-    public void delete(Company entity) {
-        System.out.println("delete method...");
-    }
+    List<Company> findByNameContainingIgnoreCase(String fragment);
 }
 

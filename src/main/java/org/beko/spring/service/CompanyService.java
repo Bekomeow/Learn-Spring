@@ -1,8 +1,7 @@
 package org.beko.spring.service;
 
 import lombok.RequiredArgsConstructor;
-import org.beko.spring.database.entity.Company;
-import org.beko.spring.database.repository.CrudRepository;
+import org.beko.spring.database.repository.CompanyRepository;
 import org.beko.spring.dto.CompanyReadDto;
 import org.beko.spring.listener.entity.AccessType;
 import org.beko.spring.listener.entity.EntityEvent;
@@ -15,7 +14,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CompanyService {
 
-    private final CrudRepository<Integer, Company> companyRepository;
+    private final CompanyRepository companyRepository;
     private final UserService userService;
     private final ApplicationEventPublisher eventPublisher;
 

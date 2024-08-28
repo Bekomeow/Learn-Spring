@@ -1,7 +1,7 @@
 package org.beko.spring.service;
 
 import org.beko.spring.database.entity.Company;
-import org.beko.spring.database.repository.CrudRepository;
+import org.beko.spring.database.repository.CompanyRepository;
 import org.beko.spring.dto.CompanyReadDto;
 import org.beko.spring.listener.entity.EntityEvent;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ class CompanyServiceTest {
     private static final Integer COMPANY_ID = 1;
 
     @Mock
-    private CrudRepository<Integer, Company> companyRepository;
+    private CompanyRepository companyRepository;
     @Mock
     private UserService userService;
     @Mock

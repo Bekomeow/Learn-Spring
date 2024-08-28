@@ -25,10 +25,15 @@ logging:
   level:
     root: INFO
     org.beko.spring.database: INFO
+    org.springframework.jdbc.core: TRACE
   file:
     name: beko.log
     path: /
 spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
   datasource:
     url: jdbc:postgresql://localhost:5433/spring_starter_db
     username: beko
@@ -37,6 +42,8 @@ spring:
   jpa:
     properties:
       hibernate:
+        batch_size: 50
+        fetch_size: 10
         show_sql: true
         format_sql: true
         hbm2ddl.auto: validate
