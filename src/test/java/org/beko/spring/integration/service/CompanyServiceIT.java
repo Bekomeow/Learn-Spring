@@ -27,7 +27,7 @@ public class CompanyServiceIT {
 
         System.out.println(databaseProperties.username());
 
-        var expectedResult = new CompanyReadDto(COMPANY_ID);
+        var expectedResult = new CompanyReadDto(COMPANY_ID, null);
         actualResult.ifPresent(actual -> assertEquals(expectedResult, actual));
     }
 }
